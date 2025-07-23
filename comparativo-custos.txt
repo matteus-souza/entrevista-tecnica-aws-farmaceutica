@@ -1,0 +1,185 @@
+PLANILHA COMPARATIVA DE CUSTOS ENTRE INSTÂNCIAS EC2
+========================================
+
+RELATÓRIO FINANCEIRO - ABSTERGO INDUSTRIES
+Data: 15/07/2025
+Responsável: Mateus de Souza Paula
+
+RESUMO EXECUTIVO
+================
+Esta planilha apresenta a análise comparativa de custos entre diferentes tipos de instâncias EC2,
+incluindo On-Demand, Reserved e Spot Instances para otimização de gastos na infraestrutura AWS.
+
+ANÁLISE DE INSTÂNCIAS EC2 - CUSTOS MENSAIS (BRL)
+==============================================
+Cotação utilizada: 1 USD = 5.50 BRL (Julho/2025)
+
+INSTÂNCIAS ON-DEMAND (Preços por hora - Região us-east-1)
+---------------------------------------------------------
+Tipo          | vCPU | RAM(GB) | Preço/Hora | Preço/Mês | Uso Recomendado
+------------- | ---- | ------- | ----------- | ---------- | ----------------
+t3.micro      |  2   |   1     |   R$0.057  |  R$41.75   | Desenvolvimento/Testes
+t3.small      |  2   |   2     |   R$0.114  |  R$83.49   | Aplicações leves
+t3.medium     |  2   |   4     |   R$0.229  | R$167.04   | Aplicações médias
+t3.large      |  2   |   8     |   R$0.458  | R$334.07   | Workloads variáveis
+m5.large      |  2   |   8     |   R$0.528  | R$385.44   | Uso geral balanceado
+m5.xlarge     |  4   |  16     |   R$1.056  | R$770.88   | Aplicações CPU intensivas
+c5.large      |  2   |   4     |   R$0.468  | R$341.28   | Computação intensiva
+r5.large      |  2   |  16     |   R$0.693  | R$505.89   | Memória intensiva
+
+INSTÂNCIAS RESERVED (1 ANO - NO UPFRONT)
+----------------------------------------
+Tipo          | Preço/Hora | Preço/Mês | Economia vs On-Demand
+------------- | ---------- | ---------- | --------------------
+t3.micro      |   R$0.040 |  R$29.32   |       30%
+t3.small      |   R$0.080 |  R$58.63   |       30%
+t3.medium     |   R$0.160 | R$116.88   |       30%
+t3.large      |   R$0.320 | R$233.75   |       30%
+m5.large      |   R$0.369 | R$269.01   |       30%
+m5.xlarge     |   R$0.737 | R$538.01   |       30%
+c5.large      |   R$0.325 | R$236.89   |       31%
+r5.large      |   R$0.484 | R$353.32   |       30%
+
+SPOT INSTANCES (Preços médios históricos)
+-----------------------------------------
+Tipo          | Preço/Hora | Preço/Mês | Economia vs On-Demand | Disponibilidade
+------------- | ---------- | ---------- | -------------------- | ---------------
+t3.micro      |   R$0.017 |  R$12.43   |       70%            |      95%
+t3.small      |   R$0.034 |  R$24.92   |       70%            |      94%
+t3.medium     |   R$0.069 |  R$50.22   |       70%            |      93%
+t3.large      |   R$0.138 | R$100.38   |       70%            |      92%
+m5.large      |   R$0.158 | R$115.61   |       70%            |      91%
+m5.xlarge     |   R$0.317 | R$231.28   |       70%            |      90%
+c5.large      |   R$0.140 | R$102.41   |       70%            |      89%
+r5.large      |   R$0.208 | R$151.75   |       70%            |      88%
+
+CENÁRIOS DE USO - ANÁLISE FINANCEIRA
+===================================
+
+CENÁRIO 1: AMBIENTE DE DESENVOLVIMENTO
+--------------------------------------
+Configuração Atual (On-Demand):
+- 5x t3.medium (24h/dia): R$835.17/mês
+- 3x t3.large (8h/dia):   R$267.24/mês
+Total Atual: R$1.102,41/mês
+
+Configuração Otimizada (Spot):
+- 5x t3.medium (24h/dia): R$251,10/mês
+- 3x t3.large (8h/dia):   R$80,30/mês
+Total Otimizado: R$331,40/mês
+ECONOMIA: R$771,01/mês (70%)
+
+CENÁRIO 2: AMBIENTE DE PRODUÇÃO
+-------------------------------
+Configuração Atual (On-Demand):
+- 10x m5.large (24h/dia): R$3.854,40/mês
+- 5x c5.large (24h/dia):  R$1.706,38/mês
+- 2x r5.large (24h/dia):  R$1.011,78/mês
+Total Atual: R$6.572,56/mês
+
+Configuração Otimizada (Reserved 1 ano):
+- 10x m5.large (24h/dia): R$2.690,10/mês
+- 5x c5.large (24h/dia):  R$1.184,45/mês
+- 2x r5.large (24h/dia):  R$706,64/mês
+Total Otimizado: R$4.581,19/mês
+ECONOMIA: R$1.991,37/mês (30%)
+
+CENÁRIO 3: PROCESSAMENTO BATCH
+------------------------------
+Configuração Atual (On-Demand):
+- 20x c5.xlarge (4h/dia): R$2.729,76/mês
+Total Atual: R$2.729,76/mês
+
+Configuração Otimizada (Spot):
+- 20x c5.xlarge (4h/dia): R$818,95/mês
+Total Otimizado: R$818,95/mês
+ECONOMIA: R$1.910,81/mês (70%)
+
+PROJEÇÃO ANUAL DE ECONOMIA
+==========================
+
+Ambiente          | Custo Atual  | Custo Otimizado | Economia Anual
+------------------ | ------------ | --------------- | --------------
+Desenvolvimento    | R$13.228,92  |   R$3.976,80    |  R$9.252,12
+Produção           | R$78.870,66  |  R$54.966,84    | R$23.903,82
+Processamento      | R$32.757,12  |   R$9.827,40    | R$22.929,72
+TOTAL              |R$124.856,70  |  R$68.771,04    | R$56.085,66
+
+ECONOMIA TOTAL ANUAL PROJETADA: R$56.085,66 (45%)
+
+RECOMENDAÇÕES ESTRATÉGICAS
+=========================
+
+1. IMPLEMENTAÇÃO IMEDIATA (0-30 dias):
+   - Migrar ambientes dev/test para Spot Instances
+   - Economia estimada: R$9.252,12/ano
+
+2. MÉDIO PRAZO (30-90 dias):
+   - Comprar Reserved Instances para produção
+   - Implementar Auto Scaling otimizado
+   - Economia estimada: R$23.903,82/ano
+
+3. LONGO PRAZO (90+ dias):
+   - Migrar processamento batch para Spot
+   - Implementar Spot Fleet para alta disponibilidade
+   - Economia estimada: R$22.929,72/ano
+
+ANÁLISE DE RISCO
+===============
+
+SPOT INSTANCES:
+Pros: Economia de até 90%
+Contras: Podem ser interrompidas (aviso de 2 min)
+Mitigação: Usar diversas AZs e tipos de instância
+
+RESERVED INSTANCES:
+Pros: Economia garantida de 30%
+Contras: Compromisso de 1-3 anos
+Mitigação: Analizar padrões de uso histórico
+
+MONITORAMENTO E OTIMIZAÇÃO CONTÍNUA
+===================================
+
+KPIs para Acompanhamento:
+- Custo por hora de processamento
+- Utilização média das instâncias
+- Taxa de interrupção Spot
+- ROI das Reserved Instances
+
+Ferramentas Recomendadas:
+- AWS Cost Explorer
+- AWS Trusted Advisor
+- CloudWatch Metrics
+- AWS Compute Optimizer
+
+CRONOGRAMA DE IMPLEMENTAÇÃO
+===========================
+
+Semana 1-2: Análise detalhada dos workloads atuais
+Semana 3-4: Implementação de Spot Instances em desenvolvimento
+Semana 5-6: Compra de Reserved Instances para produção
+Semana 7-8: Migração de processamento batch para Spot
+Semana 9-12: Monitoramento e ajustes finos
+
+CONCLUSÃO
+=========
+
+A implementação desta estratégia de otimização de custos EC2 resultará em:
+
+- Economia anual de R$56.085,66 (45% de redução)
+- ROI de 6 meses
+- Melhoria na eficiência operacional
+- Maior flexibilidade para crescimento
+
+RESPONSÁVEIS
+============
+
+Análise Financeira: Mateus de Souza Paula
+Implementação Técnica: Equipe DevOps
+Aprovação: Diretoria de TI
+Data de Revisão: Mensal
+
+---
+ABSTERGO INDUSTRIES - RELATÓRIO CONFIDENCIAL
+Gerado em: 15/07/2025
+Versão: 1.0

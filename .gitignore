@@ -1,0 +1,23 @@
+# Arquivos temporários
+*.tmp
+*.temp
+*~
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Arquivos de backup
+*.bak
+*.backup
+
+# Arquivos sensíveis (caso existam)
+*.key
+*.pem
+*.env
+config/credentials.json
+
+# Diretórios de cache
+.cache/
+temp/
